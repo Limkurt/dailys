@@ -41,3 +41,6 @@ example
 # generated native folders
 /ios
 /android
+
+#Project Notes
+prj_habit_context_v1.md
