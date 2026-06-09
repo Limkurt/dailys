@@ -63,8 +63,8 @@ async function migrate_v1(db: SQLite.SQLiteDatabase): Promise<void> {
 
       -- meta
       notes         TEXT,
-      created_at    TEXT NOT NULL DEFAULT (datetime('now)),
-      archived      INTEGER NOT NULL DEFAULT -
+      created_at    TEXT NOT NULL DEFAULT (datetime('now')),
+      archived      INTEGER NOT NULL DEFAULT 0
       );
       
     CREATE TABLE IF NOT EXISTS entries (
@@ -80,9 +80,9 @@ async function migrate_v1(db: SQLite.SQLiteDatabase): Promise<void> {
       value       REAL,               -- actual recorded value
       
       notes       TEXT,
-      created_at  TEXT NOT NULL DEFAULT (datetime('now)),
+      created_at  TEXT NOT NULL DEFAULT (datetime('now')),
       UNIQUE(habit_id, date)
-      ;
+      );
       
       -- indexes
       CREATE INDEX IF NOT EXISTS idx_entries_habit_date ON entries(habit_id, date);
