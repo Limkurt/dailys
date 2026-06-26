@@ -20,6 +20,14 @@ export default function RootLayout() {
   return (
     <PaperProvider>
       <Stack>
+        <Stack.Screen
+          name="habit/new"
+          options={{ presentation: 'modal', title: 'New Habit', headerShown: true }}
+        />
+        <Stack.Screen
+          name="habit/[id]/edit"
+          options={{ presentation: 'modal', title: 'Edit Habit', headerShown: true }}
+        />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </PaperProvider>
