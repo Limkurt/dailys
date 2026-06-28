@@ -15,6 +15,7 @@ export default function NewHabitScreen() {
 
   // Form state
   const [name, setName] = useState('');
+  const [question, setQuestion] = useState('');
   const [type, setType] = useState<HabitType>('boolean');
   const [selectedIcon,  setSelectedIcon]  = useState(PRESET_ICONS[0]);
   const [selectedColor, setSelectedColor] = useState(PRESET_COLORS[0]);
@@ -23,16 +24,28 @@ export default function NewHabitScreen() {
 
   // UI state
   const [nameError,    setNameError]    = useState('');
+  const [questionError, setQuestionError] = useState('');
   const [isSaving,     setIsSaving]     = useState(false);
   const [snackVisible, setSnackVisible] = useState(false);
 
   const validate = (): boolean => {
+    let isValid = true;
+    
     if (!name.trim()) {
       setNameError('Habit name is required.');
-      return false;
-    }
+      isValid = false;
+    } else {
     setNameError('');
-    return true
+    };
+
+    if (!question.trim()) {
+      setQuestionError('Habit question is required.');
+      isValid = false;
+    } else {
+      setQuestionError('')
+    };
+
+    return isValid;
   };
 
   const handleSave = async () => {
@@ -41,6 +54,7 @@ export default function NewHabitScreen() {
     try {
       await addHabit({
         name: name.trim(),
+        question: question.trim(),
         type,
         color: selectedIcon, // for now
         frequency: 'daily',
@@ -74,6 +88,19 @@ export default function NewHabitScreen() {
       />
       {!!nameError && (
         <Text style={styles.errorText}>{nameError}</Text>
+      )}
+
+      {/* Habit Question */}
+      <TextInput
+        label="Habit Question"
+        value={question}
+        onChangeText={t => {setQuestion(t); setQuestionError(''); }}
+        mode="outlined"
+        error={!!questionError}
+        style={styles.input}
+      />
+      {!!questionError && (
+        <Text style={styles.errorText}>{questionError}</Text>
       )}
 
       {/* Habit Type */}

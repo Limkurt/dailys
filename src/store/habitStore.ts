@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { Habit, Entry, NewHabitPayload, UpdateHabitPayload } from "@/types/habit";
-import { archiveHabit, getAllHhabits, getEntriesForDate, insertHabit, updateHabit, upsertBooleanEntry } from '@/db/habitQueries';
+import { archiveHabit, getAllHabits, getEntriesForDate, insertHabit, updateHabit, upsertBooleanEntry } from '@/db/habitQueries';
 
 interface HabitState {
   habits: Habit[];
@@ -23,7 +23,7 @@ export const useHabitStore = create<HabitState>((set, get) => ({
   loadHabits: async (date: string) => {
     set({ isLoading: true });
     const [habits, todayEntries] = await Promise.all([
-      getAllHhabits(),
+      getAllHabits(),
       getEntriesForDate(date),
     ]);
     set({ habits, todayEntries, isLoading: false});

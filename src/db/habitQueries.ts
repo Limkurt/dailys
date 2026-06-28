@@ -1,7 +1,7 @@
 import { Entry, Habit, NewHabitPayload, UpdateHabitPayload } from "@/types/habit";
 import { getDB } from "./database";
 
-export async function getAllHhabits(): Promise<Habit[]> {
+export async function getAllHabits(): Promise<Habit[]> {
   const db = await getDB();
   return db.getAllAsync<Habit>(
     'SELECT * FROM habits WHERE archived = 0 ORDER BY created_at ASC'
