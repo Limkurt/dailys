@@ -38,13 +38,6 @@ export default function NewHabitScreen() {
     setNameError('');
     };
 
-    if (!question.trim()) {
-      setQuestionError('Habit question is required.');
-      isValid = false;
-    } else {
-      setQuestionError('')
-    };
-
     return isValid;
   };
 

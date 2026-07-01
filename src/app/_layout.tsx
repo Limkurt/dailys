@@ -1,4 +1,4 @@
-import { getDB, initDB } from "@/db/database";
+import { initDB } from "@/db/database";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { PaperProvider } from 'react-native-paper';
@@ -25,10 +25,14 @@ export default function RootLayout() {
           name="habit/new"
           options={{ presentation: 'modal', title: 'New Habit', headerShown: true }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
+          name="habit/[id]"
+          options={{ headerShown: true }}
+        />  
+        <Stack.Screen
           name="habit/[id]/edit"
           options={{ presentation: 'modal', title: 'Edit Habit', headerShown: true }}
-        /> */}
+        />
       </Stack>
     </PaperProvider>
   );

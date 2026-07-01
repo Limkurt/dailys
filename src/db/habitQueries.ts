@@ -65,6 +65,14 @@ export async function getEntriesForDate(date: string): Promise<Entry[]> {
   );
 }
 
+export async function getEntriesForHabit(habitId: string): Promise<Entry[]> {
+  const db = await getDB()
+  return db.getAllAsync<Entry>(
+    'SELECT * FROM entries WHERE habit_id = ? ORDER BY date DESC',
+    [habitId]
+  );
+}
+
 export async function getAllEntries(): Promise<Entry[]> {
   const db = await getDB();
   return db.getAllAsync<Entry>(
